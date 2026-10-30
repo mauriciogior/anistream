@@ -120,26 +120,29 @@ struct SectionToolbar: ToolbarContent {
     let section: AppSection
 
     var body: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) { controls }
+    }
+
+    @ViewBuilder
+    private var controls: some View {
         switch section {
         case .calendar:
-            ToolbarItem(placement: .primaryAction) { CalendarToolbar() }
+            CalendarToolbar()
         case .library:
-            ToolbarItem(placement: .primaryAction) {
-                HStack(spacing: 8) {
-                    LibrarySegments()
-                    LibraryMenus()
-                }
+            HStack(spacing: 8) {
+                LibrarySegments()
+                LibraryMenus()
             }
         case .seasonal:
-            ToolbarItem(placement: .primaryAction) { SeasonalToolbar() }
+            SeasonalToolbar()
         case .providers:
-            ToolbarItem(placement: .primaryAction) { ProvidersToolbar() }
+            ProvidersToolbar()
         case .pluginStores:
-            ToolbarItem(placement: .primaryAction) { StoresToolbar() }
+            StoresToolbar()
         case .downloads:
-            ToolbarItem(placement: .primaryAction) { DownloadsToolbar() }
+            DownloadsToolbar()
         default:
-            ToolbarItem(placement: .primaryAction) { EmptyView() }
+            EmptyView()
         }
     }
 }
